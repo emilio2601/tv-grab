@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html ng-app="radioApp" ng-controller="scheduleCtrl">
+	<head>
+		<meta charset="utf-8">
+		<title> tvGrab {{ver}} </title>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/moment.js"></script>
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/scheduleCtrl.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+	</head>
+	<body>
+
+		<div id="wrapper">
+		<h2>tvGrab {{ver}}</h2>
+		<nav id="nav">
+               <ul id="navigation">
+                    <li><a href="index.html">Schedule</a></li>
+            </ul>
+        </nav>	
+    	</div>
+    	<br />
+    	<div id="content" class="table-responsive">
+    		<table class="table table-striped table-bordered table-condensed">
+    			<tr>
+    				<th>ID</th>
+    				<th>Title</th>
+    				<th>Starting time</th>
+    				<th>Ending time</th>
+    				<th>Duration (seconds)</th>
+    				<th>Channel name</th>
+    				<th>Format</th>
+    				<th>Tuner ID</th>
+    			</tr>
+  				<tr ng-repeat="sch in sched track by sch.id" ng-class="{'success': sch.done}">
+  					<td>{{ sch.id }}</td>
+    				<td><a ng-href="{{sch.download_url}}">{{sch.title}}</a></td>
+    				<td>{{ sch.date_start}}</td>
+    				<td>{{ sch.date_end }}</td>
+    				<td>{{ sch.duration }}</td>
+    				<td>{{ sch.channel}}</td>
+    				<td>{{ sch.format }}</td>
+    				<td>{{ sch.tunerID }}</td>
+  				</tr>
+			</table>
+		</div>
+		<div id="addSched">
+			<br/>
+			<form>
+				<h3>Schedule a recording</h3>
+				<div class="form-group">
+					<label for="title">Title:</label> 
+					<input type="text" size="60" ng-model="input.title" required/> <br/>
+				</div>
+
+				<div class="form-group">
+					<label for="date_start">Starting time: </label> 
+					<input type="datetime-local" ng-model="input.date_start" required/><br/>
+				</div>
+
+				<div class="form-group">
+					<label for="duration">Duration</label>  
+					<input type="number" ng-model="input.hours" step="1" style="width:10%;" required/>h:
+					<input type="number" ng-model="input.minutes" step="1" style="width:10%;" required/>m:
+					<input type="number" ng-model="input.seconds" step="1" style="width:10%;" required/>s
+					<br/>
+				</div>
+
+				<div class="form-group">
+					<label for="channel">Channel</label>  
+					<select ng-model="input.channel" required>
+						<option value="XHBZ" selected="selected">XHBZ-TDT Canal de las Estrellas</option>
+						<option value="XHCC">XHCC-TDT Canal Cinco</option>
+						<option value="XHCOL">XHCOL-TDT Azteca Siete</option>
+						<option value="XHOPCO">XHOPCO-TDT Una Voz Con Todos</option>
+						<option value="XHKF">XHKF-TDT Gala TV</option>
+					</select></br>
+				</div>
+
+				<div class="form-group">
+					<label for="channel">Format</label>  
+					<select ng-model="input.format" required>
+						<option value="raw" selected="selected">Do not reencode</option>
+						<option value="mp4">MP4 (x264, aac)</option>
+						<option value="mkv">MKV (x264, vorbis)</option>
+					</select></br>
+				</div>
+
+				<div class="form-group">
+					<input type="submit" ng-click="submit(input)" value="Save" /><br/>
+				</div>
+
+
+			</form>
+    	</div>
+    <h6 class="author">Built by emilio2601. Powered by AngularJS. Licensed under the <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html"> GNU GPL v2</h6>
+	</body>
+</html>
