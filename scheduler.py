@@ -64,4 +64,4 @@ if __name__ == '__main__':
                 app.db.session.commit()
 
             if now - margin_for_recording <= rec.date_start <= now + margin_for_recording:
-                record(rec)
+                set_up_recording(rec)
