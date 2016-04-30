@@ -3,7 +3,7 @@ var radioApp = angular.module("radioApp", []);
 radioApp.controller("scheduleCtrl", function($scope, $http){
 	scope = $scope
 	$scope.ver = "0.10"
-	$scope.api_location = "http://" + location.hostname + "radio/api/v1/schedule"
+	$scope.api_location = "http://" + location.hostname + ":5000/radio/api/v1/schedule"
 
 	$scope.input = {
 		"format": "raw",
