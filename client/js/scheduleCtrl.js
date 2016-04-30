@@ -20,7 +20,7 @@ radioApp.controller("scheduleCtrl", function($scope, $http){
 
 		console.log($scope.sched_to_send)
 
-		$http.post("http://localhost:5000/radio/api/v1/schedule", $scope.sched_to_send).then(function(res){
+		$http.post("radio/api/v1/schedule", $scope.sched_to_send).then(function(res){
 			$scope.response = res
 			$scope.update()
 		});
@@ -28,7 +28,7 @@ radioApp.controller("scheduleCtrl", function($scope, $http){
 	}
 
 	$scope.update = function (){
-		$http.get("http://localhost:5000/radio/api/v1/schedule").then(function(res){
+		$http.get("radio/api/v1/schedule").then(function(res){
 		$scope.sched = res.data.recordings
 		for (var i = $scope.sched.length - 1; i >= 0; i--) {
 			$scope.sched[i].date_start = moment($scope.sched[i].date_start[0] + " " + $scope.sched[i].date_start[1]).format("dddd, MMMM Do YYYY, h:mm:ss a");
