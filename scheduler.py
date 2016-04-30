@@ -14,7 +14,7 @@ def set_up_recording(rec):
             title = rec.title.replace(" ", "_") + ".ts"
             print("Recording {}".format(title))
 
-            adapter = multiprocessing.Process(target=azap, args=(rec.channel))
+            adapter = multiprocessing.Process(target=azap, args=(rec.channel,))
             adapter.start()  #At this point, we've set up the adapter but haven't started recording
 
             recorder = multiprocessing.Process(target=record, args=("/dev/dvb/adapter0/dvr0", title))
