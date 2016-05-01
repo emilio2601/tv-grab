@@ -20,7 +20,7 @@ def set_up_recording(rec):
             recorder = multiprocessing.Process(target=record, args=("/dev/dvb/adapter0/dvr0", title))
             recorder.start()
 
-            sleep(rec.duration + 1)
+            time.sleep(rec.duration + 1)
 
             recorder.terminate()
             adapter.terminate()
@@ -48,6 +48,7 @@ def record(route, output):
     subprocess.call(["cp", route, output], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
 
 if __name__ == '__main__':
+    print("Started scheduler")
     while True:
         time.sleep(1)
         recordings = app.Recording.query.all()
