@@ -5,6 +5,7 @@ import datetime
 import shutil
 import time
 import app
+import cp
 
 
 
@@ -45,7 +46,7 @@ def azap(channel):
     subprocess.call(["azap", "-r", channel], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
 
 def record(route, output):
-    subprocess.call(["cp", route, output], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+    cp.readInto(route, output, False)
 
 if __name__ == '__main__':
     print("Started scheduler")
